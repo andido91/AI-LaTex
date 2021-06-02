@@ -1,0 +1,85 @@
+\chapter{Appendix II}
+
+\section{Appendix}
+
+\subsection{Appendix A: Statistics Overview}
+
+\subsubsection{Definition of PDF}
+A probability density function $f_{X}(x)$ for the  aleatory variable $X$ is such that the probability to have $X \leq x$ is:
+\[Pr(X\leq x)= F_{X}(x)=\int_{-\infty}^{x}f_{X}(x')dx'\]
+where $F_{X}(x)$ is the Cumulative distribution function.
+
+The normalization of the PDF is such that:
+\[\int_{-\infty}^{\infty}f_{X}(x)dx=1\]
+\subsubsection{Monovariated PDF and its properties}
+
+\paragraph{Mean and variance}
+\[E(x)=\int_{-\infty}^{\infty}xf_{x}(x)dx\]
+
+\[Var(x)=E\Big(\big(x-E(x)\big)^2\Big)=\int_{-\infty}^{\infty}(x-E(x))^2f_{x}(x)dx\]
+More in general we give the following useful relation
+\begin{equation}
+    E(\phi(x))=\int_{-\infty}^{\infty}\phi(x)f_{x}(x)dx \qquad \mbox{use transformation method to check this property}
+    \label{eq:MEANPHY}
+\end{equation}
+
+
+
+
+\subsubsection{Bivariated PDF and its properties}
+Given a bivariated probability density function $f_{Y}(x_{1},x_{2})$ associated with \[Y=X_{1}+X_{2}\]
+the mean of the Y variable is:
+
+\[E(y)=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}(x_{1}+x_{2})f_{Y}(x_{1},x_{2})dx_{1}dx_{2}\]
+And the variance is:
+\begin{equation}
+\begin{split}
+    Var(y)&=E\Big(\big(y-E(y)\big)^2\Big)=
+E\Big(\big((x_{1}+x_{2})-(E(x_{1})+E(x_{2}))\big)^2\Big)=\\
+&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\Big(\big(x_{1}+x_{2}\big)-\big(E(x_{1})-E(x_{2})\big)\Big)^2f_{Y}(x_{1},x_{2})dx_{1}dx_{2}
+\end{split}
+\end{equation}
+and thus:
+\[Var(y)=Var(x_{1})+Var(x_{2})+2\cdot Cov(x_{1},x_{2})\]
+where we have defined the covariance:
+\[Cov(x_{1},x_{2})=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\big(x_{1}-E(x_{1})\big)\big(x_{2}-E(x_{2})\big)f_{Y}(x_{1},x_{2})dx_{1}dx_{2}\]
+and $Cov(x_{1},x_{2})=0$ if $X_{1}$ and $X_{2}$ are statistically independent because of:
+\[f_{Y}(x_{1},x_{2})\overset{\textbf{STATISTICAL-INDEPENDENCE}}{\rightarrow}f_{X_{1}}(x_{1})f_{X_{2}}(x_{2})\]
+And thus $Cov(x_{1},x_{2})$ becomes the product of the mean of the deviation, which is zero by definition.
+
+\subsubsection{Chebychev inequality}
+\[E(|x|^r)=\int_{-\infty}^{\infty}|x|^r f_{x}(x) dx\geq \int_{|x|\geq a}|x|^r f_{x}(x) dx \geq |a|^r \int_{|x|\geq a} f_{x}(x) dx=|a|^r\cdot P(|X| \geq a)\]
+\[  P(|X| \geq a) \leq \frac{E(|x|^r)}{|a|^r}  \]
+
+
+
+
+\subsubsection{Law of large number with Chebychev}
+Starting from the Chebychev inequality, being $\overline{X}$ the Sample Mean for variable following the same probability distribution, for a fixed $\epsilon$:
+\[P(|\overline{X}-\mu| \leq \epsilon) =1 - P(|\overline{X}-\mu| \geq \epsilon) \geq 1-\frac{E(|\overline{X}-\mu|^2)}{|\epsilon|^2}= 1-\frac{Var(\overline{X})}{|\epsilon|^2}=1-\frac{\sigma^2}{n\cdot \epsilon}\]
+which for $n \to \infty$ leads to
+\[P(|\overline{X}-\mu| \leq \epsilon) \to 1\]
+and thus the Sample mean $\overline{X}$ converge in probability to the mean $\mu$ for $n \to \infty$
+
+\subsubsection{Central Limit Theorem} 
+Let $X_{1},X_{2},\dots ,X_{N}$ independent and identically distributed (implies that the $X_{i}$ have the same PDF $f_{X_{i}}(x)$) random variables having a common probability density with mean $\mu$ and variance $\sigma^{2}$.
+Given the multivariated variable $Y_{N}=X_{1}+X_{2}+\dots+X_{N}$ we have that for $N\rightarrow \infty$ the PDF of $Y_{N}$ is:
+
+\[G_{Y_{N}}(y)=\frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{(y-\mu)^2}{2\sigma^2}}\]
+which is the PDF of a Gaussian distribution even if the  are not Gaussian distributed.
+The level of approximation is such good that if the PDF of $X_{i}$ is symmetric the sum can stop at $N=5$ providing a Gaussian-like PDF for $Y_{5}$. 
+
+\subsubsection{Transformation method (funzioni di una variabile aleatoria)}
+Given $ y=\phi(x) $
+\begin{equation}
+    \begin{split}
+           F_{Y}\Big(y\Big)&=P\Big(Y\leq y\Big)=P\Big(Y\leq \phi(x)\Big)=P\Big(\phi^{-1}\big(Y\big) \leq \phi^{-1}\big(\phi(x)\big)\Big)=\\ &= P\Big(X \leq \phi^{-1}(y)\Big)=
+           \begin{cases} F_{X}\Big(\phi^{-1}(y)\Big) & \mbox{if } \phi(x) \mbox{ increasing} \\ 1 - F_{X}\Big(\phi^{-1}(y)\Big) & \mbox{if } \phi(x) \mbox{ decreasing} \end{cases} 
+    \end{split}
+\end{equation}
+
+
+\[f_{Y}(y)=\frac{dF_{Y}(y)}{dy}=\frac{dF_{X}\Big(\phi^{-1}(y)\Big)}{dy}=f_{X}\Big(\phi^{-1}(y)\Big) \Bigg| \frac{d\phi^{-1}(y)}{dy}\Bigg|\]
+
+\subsection{Appendix B: Introduction to Python}
+\subsubsection{Class in Python}

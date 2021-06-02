@@ -1,0 +1,639 @@
+\documentclass[11pt,openany,twoside,a4paper]{book}
+\usepackage[a4paper,top=3cm,bottom=3cm,right=3cm,left=3cm]{geometry}	% Document margins
+\usepackage[LSBC4,T1]{fontenc}			% Use 8-bit encoding that has 256 glyphs
+\usepackage[utf8]{inputenc}
+\usepackage[greek,italian,english]{babel}	% Language hyphenation and typographical rules
+\usepackage[italian]{varioref}%
+	\raggedbottom
+\usepackage{fancyhdr}	% Headers and footers
+	\fancyhf{}			% Blank out the default headers and footers
+	\fancyfoot[C]{\thepage}	 % Custom footer text
+	\fancyhead[RO]{\nouppercase{\bfseries\boldmath\rightmark}}	% Custom RO header
+	\fancyhead[LE]{\nouppercase{\bfseries\boldmath\leftmark}}	% Custom LE header
+	\pagestyle{fancy}	% All pages have headers and footers
+	\renewcommand{\chaptermark}[1]{\markboth{\thechapter~#1}{}}
+	\renewcommand{\sectionmark}[1]{\markright{\thesection~#1}}
+	\setlength{\headheight}{15pt}
+\usepackage{CJKutf8}		% Japanese font
+\usepackage{upgreek}		% Upright Greek font
+\usepackage{graphicx}
+	\graphicspath{{Immagini/} {Immagini/Optimization_Algorithm_Animation/}}
+\usepackage{multirow}
+\usepackage{titlesec}		% Allows customization of titles
+\usepackage{enumitem}	% Customized lists
+\usepackage{extarrows}
+\usepackage{eurosym}
+\usepackage{microtype}	% Slightly tweak font spacing for aesthetics
+\usepackage{textcomp}
+\usepackage{amssymb}	% Mathematical fonts
+\usepackage{amsfonts}	% Mathematical fonts
+\usepackage{amsmath}	% Mathematical fonts
+\usepackage{amsthm}		% Theorems and Proofs
+\usepackage{mathrsfs}		% Mathematical fonts
+\usepackage{array}
+\usepackage{hhline}		% Lines for tables (to prevent cell background color cover the lines)
+\usepackage{comment}	% \begin{comment} \end{comment} to comment large parts of text
+\usepackage{empheq}
+\usepackage{siunitx}		% Units
+\usepackage{color}					% Colors
+\usepackage{colortbl}					% Colors
+\usepackage[dvipsnames,table]{xcolor}		% Colors
+\usepackage{tikz}		% For drawings
+\usepackage{pgfplots}		% For plots
+\usepackage{animate}		% Animations (like gif)
+\usepackage{chessboard}	% Chessboard
+\usepackage{xskak}		% Chessboard
+\usepackage{cancel}
+\usepackage{booktabs}	% Fancy horizontal rules in tables
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{subcaption}     % Subfigures
+\usepackage{float}		% Force positioning of images
+\usepackage{hyperref}		% For hyperlinks in the PDF
+\usepackage{bookmark}	% To modify standard pdf bookmarks
+\usepackage{pgfornament}	% Ornaments (like the one in the Preface)
+\usepackage[skins,theorems,most]{tcolorbox}
+\usepackage[super]{nth}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=numeric,sorting=biborder,maxbibnames=4,minbibnames=4,url=true,giveninits=true]{biblatex}
+	\addbibresource{References.bib}
+	\DefineBibliographyExtras{english}{\let\finalandcomma=\empty}
+	\DeclareFieldFormat[book]{title}{\iffieldundef{edition}{\mkbibitalic{#1}\isdot}{\mkbibitalic{#1}\nopunct}}
+	\DeclareFieldFormat[book]{edition}{\ifinteger{#1}{\mkbibparens{\mkbibordedition{#1}~ed.}}{\mkbibparens{#1}\isdot}}
+	\DeclareFieldFormat[book]{part}{,~part~#1}
+	\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+	\renewbibmacro*{volume+number+eid}{
+		\printfield{volume}
+		\setunit{\addcolon}
+		\printfield{number}}
+	\DeclareSortingTemplate[]{biborder}{\sort{\field{presort}}}
+\usepackage{attachfile}    % Attachments
+	\makeatletter
+	% Definition of new icon (defaults one are horrible)
+	\newcommand{\atfi@acroCustomPushPin@data}{\includegraphics[height=3.4mm]{Push Pin}}
+	\DeclareRobustCommand{\atfi@acroCustomPushPin}{%
+		\raisebox{-0.755mm}{%
+		\atfi@acroCustomPushPin@data%
+		}%
+	}
+	\makeatother
+\usepackage[debrief]{silence}	% To silence some warnings (use [showwarnings] to show them)
+	\WarningFilter{latex}{Writing or overwriting file}
+	\WarningFilter{latex}{Tab has been converted to Blank Space}
+	\WarningFilter*{latex}{Text page \thepage\space contains only floats}
+	\WarningFilter{latexfont}{Font shape `T1/cmr/m/n' in size <16> not available}
+	\WarningFilter{latexfont}{Font shape `T1/cmr/bx/n' in size <16> not available}
+	\WarningFilter{latexfont}{Font shape `OT1/cmr/m/n' in size <16> not available}
+	\WarningFilter{latexfont}{Font shape `OML/cmm/m/it' in size <16> not available}
+	\WarningFilter{latexfont}{Font shape `OMS/cmsy/m/n' in size <16> not available}
+	\WarningFilter{latexfont}{Font shape `OT1/cmss/m/n' in size <16> not available}
+	\WarningFilter{latexfont}{Font shape `OT1/cmtt/m/n' in size <16> not available}
+	\WarningFilter{latexfont}{Font shape `U/rsfs/m/n' in size <16> not available}
+	\WarningFilter{latexfont}{Font shape `U/mathb/m/n' in size <16> not available}
+	\WarningFilter{latexfont}{Font shape `U/matha/m/n' in size <16> not available}
+	\WarningFilter{latexfont}{Size substitutions with differences}
+	\WarningFilter{latexfont}{Some font shapes were not available, defaults substituted}
+	\pdfsuppresswarningpagegroup=1
+
+
+
+%--------------------------------------------- Non-working or no-more-necessary packages -------------------------------------------------
+%---------------------------------------------           from previous article template            ------------------------------------------------
+%-------------------------------------------------------------------------------------------------------------------------------------------------------------
+% \usepackage{grffile}			%per evitare la comparsa del path delle immagini alla loro sx
+\usepackage{blindtext}		% Package to generate dummy text throughout this template
+% \usepackage[sc]{mathpazo}	% Use the Palatino font
+	% \linespread{1.05}		% Line spacing - Palatino needs more space between lines
+\usepackage{lettrine}			% The lettrine is the first enlarged letter at the beginning of the text
+	% \setlist[itemize]{noitemsep}	% Make itemize lists more compact
+% \usepackage{abstract}		% Allows abstract customization
+% \renewcommand{\abstractnamefont}{\normalfont\bfseries}		% Set the "Abstract" text to bold
+% \renewcommand{\abstracttextfont}{\normalfont\small\itshape}	% Set the abstract itself to small italic text
+% \titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+% \titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+% \usepackage{titling}			% Customizing the title section
+% \setlength{\droptitle}{-4\baselineskip}		% Move the title up
+%-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+% Add a comma to consecutive footnotes
+\let\oldFootnote\footnote
+\newcommand\nextToken\relax
+\renewcommand\footnote[1]{\oldFootnote{#1}\futurelet\nextToken\isFootnote}
+\newcommand\isFootnote{\ifx\footnote\nextToken\textsuperscript{,}\fi}
+
+
+
+
+%---------------------------------------------------------------- Setup & Options --------------------------------------------------------------------
+\usetikzlibrary{
+	patterns,
+	3d,
+	calc,
+	spy,
+	backgrounds,
+	arrows.meta,
+	positioning,
+	pgfplots.fillbetween,
+	decorations.markings,
+	decorations.text,
+	decorations.pathreplacing,
+	decorations.pathmorphing,
+	fit,
+	fadings,
+	shadows,
+	bending,
+	intersections,
+	pgfplots.groupplots,
+	pgfplots.external,
+	}
+\pgfplotsset{
+    compat=newest,
+    % Personal layer structure for plots
+    layers/personal/.define layer set={axis background,axis grid,axis ticks,axis lines,axis tick labels,axis descriptions,pre main,main,axis foreground}{
+		grid style				= {/pgfplots/on layer=axis grid},
+		tick style				= {/pgfplots/on layer=axis ticks},
+		axis line style			= {/pgfplots/on layer=axis lines},
+		label style				= {/pgfplots/on layer=axis descriptions},
+		legend style			= {/pgfplots/on layer=axis descriptions},
+		title style				= {/pgfplots/on layer=axis descriptions},
+		colorbar style			= {/pgfplots/on layer=axis descriptions},
+		ticklabel style			= {/pgfplots/on layer=axis tick labels},
+		axis background@ style		= {/pgfplots/on layer=axis background},
+		3d box foreground style	= {/pgfplots/on layer=axis foreground},
+	},
+}
+\tikzexternalize[prefix=TikzExternalize/,figure name={Tikz-Figure-}]
+\tikzexternaldisable
+
+\hypersetup{
+	bookmarksopen=true,
+	bookmarksopenlevel=1,
+	pdfencoding=auto,
+	allbordercolors=[RGB]{0,173,238},
+	citebordercolor={green},
+	urlbordercolor={blue},
+	pdfstartview=FitH,
+	pdftitle={Notes of Artificial Intelligence},
+	}
+\bookmarksetup{numbered=true,addtohook={\ifnum\bookmarkget{level}=0\bookmarksetup{color=blue}\fi},addtohook={\ifnum\bookmarkget{level}=-1\bookmarksetup{italic}\fi},}
+\captionsetup{tableposition=bottom,figureposition=bottom,format=hang,font=small,labelfont={color=black,bf},textfont={it}}
+\captionsetup[subfigure]{skip=10pt}
+\sisetup{detect-all,output-decimal-marker={.},range-units=brackets,range-phrase=--,range-units=single,group-digits=integer,retain-explicit-plus,binary-units=true}
+
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}			% ToC max depth (3=subsubsection)
+\numberwithin{equation}{section}		% Reset equation counter at each section
+
+
+
+
+
+%----------------------------------------------------------------- Math operators ---------------------------------------------------------------------
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\DeclareMathOperator\sech{sech}
+\DeclareMathOperator\sgn{sgn}
+\DeclareMathOperator*\argmax{argmax}
+\DeclareMathOperator*\argmin{argmin}
+
+
+%----------------------------------------------------------------------- Colors ----------------------------------------------------------------------------
+\definecolor{Background}{RGB}{235,235,237}
+\definecolor{River}{RGB}{51,102,204}
+
+
+%------------------------------------------------------------- Various \necommand -----------------------------------------------------------------
+% Bar having middle length
+\newcommand{\bbar}[1]{\mkern 1.5mu\overline{\mkern-1.25mu#1\mkern-1.25mu}\mkern 1.5mu}
+% Very small horizontal space (math only)
+\newcommand{\s}{\mspace{1mu}}
+% A circled number
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[line width=0.45pt,shape=circle,draw=black,fill=gray!5,inner sep=2pt,font=\small] (char) {#1};}}
+% Matrix dimensions background
+\newcommand\matrixbg[1]{ {\Bigl[\colorbox{lightgray!12}{$#1$}\Bigr]} }
+
+
+%-------------------------------------------------------------------- Go stones -------------------------------------------------------------------------
+% Black stone + shadow
+\newcommand\gobstone[3][]{%
+	\begin{scope}[shift={(#2,#3)}]
+        	\path[drop shadow={shadow xshift=0.036,shadow yshift=-0.06,fill=black,path fading={circle with fuzzy edge 15 percent}}] (0,0) circle (0.5);
+        	\clip (0,0) circle (0.5);
+	        \shade[outer color=black,inner color=black!55] (0,0) ++ (115:0.4) circle (0.5+0.4);
+	        \node[inner sep=0pt,outer sep=0pt,text=white,font=\LARGE\bfseries] at (0,0) {#1};
+	\end{scope}}
+% White stone + shadow
+\newcommand\gowstone[3][]{%
+	\begin{scope}[shift={(#2,#3)}]
+        	\path[drop shadow={shadow xshift=0.036,shadow yshift=-0.06,fill=black,path fading={circle with fuzzy edge 15 percent}}] (0,0) circle (0.5);
+        	\clip (0,0) circle (0.5);
+	        \shade[outer color=black!15!white, inner color=white] (0,0) ++ (115:0.4) circle (0.5+0.4);
+		\node[inner sep=0pt,outer sep=0pt,text=black,font=\LARGE\bfseries] at (0,0) {#1};
+	\end{scope}}
+% Shadow
+\newcommand\goshadow[2]{%
+	\begin{scope}[shift={(#1,#2)}]
+		\path[drop shadow={shadow xshift=0.036,shadow yshift=-0.06,fill=black,path fading={circle with fuzzy edge 15 percent}}] (0,0) circle (0.5);
+		\end{scope}}
+
+
+%------------------------------------------------------------------ Jupyter code -----------------------------------------------------------------------
+% The default typewriter font (\texttt{}) is different from the Jupyter's default. Jupyter font is Consolas, but it is not implemented in the standard LaTeX distribution, unless you use XeLaTeX (but this cannot be used because of some packages). The most similar one is DejaVuSansMono-TLF. So I defined a \jupytercode[]{} command to write the inline code with that font. The optional argument is the scaling factor (default=1), to be used when the font is \small or \footnotesize.
+\newcommand\fontfamilycmd{\fontfamily{DejaVuSansMono-TLF}\fontsize{9}{10.8}}
+\newlength{\codemargin}
+\setlength{\codemargin}{3.05pt}
+\newlength{\codeheightup}
+\settoheight{\codeheightup}{\fontfamilycmd\selectfont X}
+\newlength{\codeheight}
+\settoheight{\codeheight}{\fontfamilycmd\selectfont x}
+\newlength{\codelength}
+\newcommand\textcode[1]{%
+	\settowidth{\codelength}{\fontfamilycmd\selectfont#1}%
+	\tikz[baseline=(char.base)]{
+		\node[inner sep=0pt,outer sep=0pt,anchor=mid] (char) at (0,0) {\fontfamilycmd\selectfont#1};
+		\begin{scope}[on background layer]
+		\fill[GrayCode] ({-\codelength/2-\codemargin},{-\codeheight/2-\codemargin}) rectangle ({\codelength/2+\codemargin},{\codeheight/2+(\codeheightup-\codeheight)+\codemargin});
+		\end{scope}}}
+% Remove this if you want the gray background
+\renewcommand\textcode[1]{\fontfamilycmd\selectfont#1}
+
+% Comprehensive
+\newcommand\jupytercode[2][1]{%
+	\scalebox{#1}{\textcode{#2}}%
+}
+
+
+%---------------------------------------------------- Boxed equations (\tcbhighmath{}) -------------------------------------------------------
+\tcbset{highlight math style={enhanced,
+		fuzzy shadow={-0.45mm}{-0.45mm}{0mm}{0.1mm}{black!30!white},
+		frame style={gray!80},
+		colback=white,
+		arc=0pt,
+		boxrule=0.4pt,
+		left=0.65pt,
+		right=0.65pt,
+		top=0.54pt,
+		bottom=0.54pt,
+	}
+}
+% To adjust the space below
+\renewcommand{\tcbhighmath}[2][]{\tcbox[highlight math,nobeforeafter,math upper,tcbox raise base,#1]{#2}\vspace{0.45mm}}
+
+
+%---------------------------------------------- Upright Greek letters - NEWTX (libertine) ----------------------------------------------------
+% In order to import just some specific symbols/glyphs from other fonts, without changing the overall font. In my case, I introduced the θ letter in upright (i.e. non-slanted, like the defult mathmode font) to be used in vector notation (here denominated \upthetaNlib).
+\DeclareFontFamily{U}{nxlmia}{\skewchar\font=127}
+\DeclareFontShape{U}{nxlmia}{m}{it}{
+   <-> s*[1.035] nxlmia
+}{}
+\DeclareFontShape{U}{nxlmia}{b}{it}{
+   <-> s*[1.035] nxlbmia
+}{}
+\DeclareSymbolFont{NEWTXlibupletters}{U}{nxlmia}{m}{it}
+\SetSymbolFont{NEWTXlibupletters}{bold}{U}{nxlmia}{b}{it}
+	\DeclareMathSymbol{\upthetaNlib}{\mathord}{NEWTXlibupletters}{18}
+
+
+%--------------------------------------------------- Shorthands for upright bold Greek ---------------------------------------------------------
+\newcommand{\boldalpha}{\boldsymbol{\upalpha}}
+\newcommand{\boldtheta}{ {\rule{0pt}{7.547pt}\smash{\boldsymbol{\upthetaNlib}}} }
+\newcommand{\boldmu}{\boldsymbol{\upmu}}
+\newcommand{\boldsigma}{\boldsymbol{\sigma}}
+\newcommand{\boldphi}{\boldsymbol{\upphi}}
+
+
+%--------------------------------------------------------------- Animation timelines ------------------------------------------------------------------
+
+\begin{filecontents*}[overwrite]{Animation_8_Puzzle.txt}
+: 0.8	: 0	; 1
+: 1.3	: 2x0	; 3
+:	:	; 4
+:	:	; 5
+:	:	; 6
+:	:	; 7
+:	:	; 8
+:	:	; 9
+:	:	; 10
+:	:	; 11
+:	:	; 12
+:	:	; 13
+:	:	; 14
+:	:	; 15
+:	:	; 16
+:	:	; 17
+:	:	; 18
+:	:	; 19x2
+:	:	; 20
+\end{filecontents*}
+
+
+\begin{filecontents*}[overwrite]{Animation_Go_Game.txt}
+:	: 0x0		;
+:	: 1x0		; 151x0
+:	: 2x0		; 152x0
+:	: 3x0		; 153x0
+:	: 4x0		; 154x0
+:	: 5x0		; 155x0
+:	: 6x0		; 156x0
+:	: 7x0		; 157x0
+:	: 8x0		; 158x0
+:	: 9x0		; 159x0
+:	: 10x0	; 160x0
+:	: 11x0	; 161x0
+:	: 12x0	; 162x0
+:	: 13x0	; 163x0
+:	: 14x0	; 164x0
+:	: 15x0	; 165x0
+:	: 16x0	; 166x0
+:	: 17x0	; 167x0
+:	: 18x0	; 168x0
+:	: 19x0	; 169x0
+:	: 20x0	; 170x0
+:	: 21x0	; 171x0
+:	: 22x0	; 172x0
+:	: 23x0	; 173x0
+:	: 24x0	; 174x0
+:	: 25x0	; 175x0
+:	: 26x0	; 176x0
+:	: 27x0	; 177x0
+:	: 28x0	; 178x0
+:	: 29x0	; 179x0
+:	: 30x0	; 180x0
+:	: 31x0	; 181x0
+:	: 32x0	; 182x0
+:	: 33x0	; 183x0
+:	: 34x0	; 184x0
+:	: 35x0	; 185x0
+:	: 36x0	; 186x0
+:	: 37x0	; 187x0
+:	: 38x0	; 188x0
+:	: 39x0	; 189x0
+:	: 40x0	; 190x0
+:	: 41x0	; 191x0
+:	: 42x0	; 192x0
+:	: 43x0	; 193x0
+:	: 44x0	; 194x0
+:	: 45x0	; 195x0
+:	: 46x0	; 196x0
+:	: 47x0	; 197x0
+:	: 48x0	; 198x0
+:	: 49x0	; 199x0
+:	: 50x0	; 200x0
+:	: 51x0	; 201x0
+:	: 52x0	; 202x0
+:	: 53x0	; 203x0
+:	: 54x0	; 204x0
+:	: 55x0	; 205x0
+:	: 56x0	; 206x0
+:	: 57x0	; 207x0
+:	: 58x0	; 208x0
+:	: 59x0	; 209x0
+:	: 60x0	; 210x0
+:	: 61x0	; 211x0
+:	: 62x0	; 212x0
+:	: 63x0	; 213x0
+:	: 64x0	; 214x0
+:	: 65x0	; 215x0
+:	: 66x0	; 216x0
+:	: 67x0	; 217x0
+:	: 68x0	; 218x0
+:	: 69x0	; 219x0
+:	: 70x0	; 220x0
+:	: 71x0	; 221x0
+:	: 72x0	; 222x0
+:	: 73x0	; 223x0
+:	: 74x0	; 224x0
+:	: 75x0	; 225x0
+:	: 76x0	; 226x0
+:	: 77x0	; 227x0
+:	: 78x0	; 228x0
+:	: 79x0	; 229x0
+:	: 80x0	; 230x0
+:	: 81x0	; 231x0
+:	: 82x0	; 232x0
+:	: 83x0	; 233x0
+:	: 84x0	; 234x0
+:	: 85x0	; 235x0
+:	: 86x0	; 236x0
+:	: 87x0	; 237x0
+:	: 88x0	; 238x0
+:	: 89x0	; 239x0
+:	: 90x0	; 240x0
+:	: 91x0	; 241x0
+:	: 92x0	; 242x0
+:	: 93x0	; 243x0
+:	: 94x0	; 244x0
+:	: 95x0	; 245x0
+:	: 96x0	; 246x0
+:	: 97x0	; 247x0
+:	: 98x0	; 248x0
+:	: 99x0	; 249x0
+:	: 100x0	; 250x0
+:	: 101x0	; 251x0
+:	: 102x0	; 252x0
+:	: 103x0	; 253x0
+:	: 104x0	; 254x0
+:	: 105x0	; 255x0
+:	: 106x0	; 256x0
+:	: 107x0	; 257x0
+:	: 108x0	; 258x0
+:	: 109x0	; 259x0
+:	: 110x0	; 260x0
+:	: 111x0	; 261x0
+:	: 112x0	; 262x0
+:	: 113x0	; 263x0
+:	: 114x0	; 264x0
+:	: 115x0	; 265x0
+:	: 116x0	; 266x0
+:	: 117x0	; 267x0
+:	: 118x0	; 268x0
+:	: 119x0	; 269x0
+:	: 120x0	; 270x0
+:	: 121x0	; 271x0
+:	: 122x0	; 272x0
+:	: 123x0	; 273x0
+:	: 124x0	; 274x0
+:	: 125x0	; 275x0
+:	: 126x0	; 276x0
+:	: 127x0	; 277x0
+:	: 128x0	; 278x0
+:	: 129x0	; 279x0
+:	: 130x0	; 280x0
+:	: 131x0	; 281x0
+:	: 132x0	; 282x0
+:	: 133x0	; 283x0
+:	: 134x0	; 284x0
+:	: 135x0	; 285x0
+:	: 136x0	; 286x0
+:	: 137x0	; 287x0
+:	: 138x0	; 288x0
+:	: 139x0	; 289x0
+:	: 140x0	; 290x0
+:	: 141x0	; 291x0
+:	: 142x0	; 292x0
+:	: 143x0	; 293x0
+:	: 144x0	; 294x0
+:	: 145x0	; 295x0
+:	: 146x0	; 296x0
+:	: 147x0	; 297x0
+:	: 148x0	; 298x0
+:	: 149x0	; 299x0
+:	: 150x0	; 300x0
+\end{filecontents*}
+
+
+
+
+
+
+
+\let\cleardoublepage=\clearpage
+
+
+
+
+
+
+
+\begin{document}
+
+\bookmarksetupnext{addtohook=\bookmarksetup{color={}}}
+\pdfbookmark[chapter]{Title page}{title}
+\newgeometry{top=2cm,bottom=3cm,right=3cm,left=3cm}
+\begin{titlepage}
+\renewcommand{\thepage}{Cover}
+\tikz[remember picture,overlay] \node[opacity=0.070,inner sep=0pt] at (current page.center) {\includegraphics[width=\paperheight,height=\paperwidth,angle=-90]{Cover}};
+\begin{center}
+\includegraphics[width=245.7px]{LogoUnife.pdf}\vspace{3pt}
+\rule[0.1cm]{\textwidth}{0.1mm}
+\rule[0.5cm]{\textwidth}{0.6mm}\vspace{-6pt}
+{\large\bfseries Dipartimento di Fisica e Scienze della Terra\\
+Master Degree in Physics}
+\end{center}
+\vspace{25mm}
+\begin{center}
+{\fontsize{30pt}{36pt}\selectfont{\bf {\textsc{Notes of}}}}\vspace{12pt}\\
+{\fontsize{30pt}{36pt}\selectfont{\bf {\textsc{Artificial Intelligence}}}}\\
+\vspace{22mm}
+{\Large\bf
+Francesco Tralli\footnote{francesco.tralli@edu.unife.it}\vspace{3pt}\par
+Andrea Di Donna\footnote{andrea.didonna@edu.unife.it}\vspace{3pt}\par
+Federico Matias Melendi\footnote{federicomati.melendi@edu.unife.it}\par}
+\end{center}
+\vspace{40mm}
+\begin{center}
+{\Large{\bf A.Y. 2020/2021}}
+\end{center}
+\begin{center}
+{\large (Last revised \today)}
+\end{center}
+\end{titlepage}
+\restoregeometry
+
+
+
+\frontmatter
+\bookmarksetupnext{addtohook=\bookmarksetup{color=[RGB]{128,0,0},bold}}
+\pdfbookmark[chapter]{\contentsname}{toc}
+{\tableofcontents}
+\addtocontents{toc}{~\hfill\textbf{Page}\par}
+
+
+\bookmarksetupnext{addtohook=\bookmarksetup{color={}}}
+{\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\chapter{Preface}
+These notes are based on the lectures of Artificial Intelligence (Master Degree in Physics) held by Professor Alessandro Drago at Università degli Studi di Ferrara during the academic year 2020/2021. In addition to the knowledge provided by the professor himself during the course, about a dozen of various texts (books, articles, websites, etc.) have been consulted for the preparation of these notes, in order to make the final result more accurate and complete. The entire list of all references can be easily found at the very end of this document. Nonetheless, the main reference textbooks on which this text is based, as recommended by the professor himself, are:
+\begin{enumerate}
+\item ``Artificial Intelligence: A Modern Approach'' by S. Russell and P. Norvig~\cite{RussellNorvig3,RussellNorvig4} for the introductory part (Chapter~\ref{chap:1});
+\item ``Numerical Recipes: The Art of Scientific Computing'' by W. H. Press et al.~\cite{Recipes} for random number generation and Monte Carlo techniques (Chapter~\ref{chap:2});
+\item ``Neural Networks: An Introduction'' by B. Müller, J. Reinhardt, M. T. Strickland~\cite{MRS} for the part of neural networks (Chapter~\ref{chap:3});
+\item ``Hands-on Machine Learning with Scikit-Learn, Keras \& TensorFlow'' by Aurélien Géron~\cite{Geron1,Geron2} for the part of neural networks (Chapter~\ref{chap:4}).
+\end{enumerate}
+Also, the appendix of this book contains a collection of instructive programs taken from~\cite{MRS} and written in C.
+
+Furthermore, in order to make it easier to understand the covered topics, within the text are embedded some examples of codes based on calculation programs such as Python or Mathematica. These are also attached to the pdf file and indicated in the text with a small push pin icon \raisebox{-0.755mm}{\includegraphics[height=3.4mm]{Push Pin}}. By default setting Adobe Acrobat Reader does not allow you to open or save attachments with particular extensions that can represent a potential security risk. These are, for instance, executable files (\texttt{.exe}), archives (\texttt{.rar}), but also (and unfortunately) Python files (\texttt{.py}) because they are the most suspected type of file to carry malicious contents, open other dangerous file or launch applications. In order to change these settings, follow the procedure indicated at the following link: \url{https://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/attachments.html?highlight=blacklist}. Nevertheless, unfortunately, these modified settings are restored to the default ones whenever Adobe Acrobat Reader is updated (and blocking automatic updates is quite tricky).
+
+There is at disposal also a great collection of very complicated (and complete) codes from Russell and Norvig~\cite{RussellNorvig3} that covers all the textbook. If you're interested in, you can find them on GitHub, but they have a lot of dependencies, also internal dependencies, so you have to follow the instructions written at the link \url{https://github.com/aimacode/aima-python}.
+
+Instead, the examples taken from Géron~\cite{Geron1,Geron2} are available for consultation at the following link, written also inside the book itself: \url{https://github.com/ageron/handson-ml2}.
+
+Having said that, as exhaustive as they may seem, these notes should be considered as a study support for a better follow-up of the course, and not as a substitute for face-to-face lessons.
+
+%These notes are in constant update and it is therefore possible to find the most recent version at the link shown on the front page; if for some reasons the Google Drive link stops working, just contact me via mail or in person. Another remark is that some old versions of Adobe Acrobat Reader report an error (error code 131) when consulting the file. Although I have not yet fully understood the origin, it is possible to solve it by lowering the pdf version (e.g. from 1.5 to 1.4). Anyway, contact me and I will provide you a working version.
+
+Readers are also strongly encouraged to report \emph{any} kind of error (misprints, misspellings, mistakes) to the author. Of course, any errors that remain are my sole responsibility.
+
+
+
+\vspace{1cm}
+\hspace*{9.5cm}\emph{Francesco Tralli}\par
+\hspace*{9.5cm}\emph{Andrea Di Donna}\par
+\hspace*{9.5cm}\emph{Federico Matias Melendi}
+
+\vspace{1cm}
+{\centering\pgfornament[scale=0.6]{89}\par}
+}
+
+
+
+\mainmatter
+
+
+
+
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries\raggedleft}{\textsc{\chaptertitlename}\ \resizebox{!}{1.5cm}{\thechapter}\rlap{\hspace{0.43cm}\raisebox{0.6pt}{\tikz{\fill[left color=black,right color=Background!10!black] (0,0) rectangle (2.57,1.5);}}}}{14pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{50pt}{30pt}
+
+
+
+
+
+\input{Chapter_1}
+\input{Chapter_2}
+\input{Chapter_3}
+\input{Chapter_4}
+\input{Chapter_5}
+
+\input{Appendix}
+\input{Appendix_II}
+
+
+
+
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+
+
+
+
+\backmatter
+
+\addtocontents{toc}{\protect\addvspace{15pt plus 1pt}}
+\bookmarksetup{addtohook={\ifnum\bookmarkget{level}=0\bookmarksetup{color={}}\fi},startatroot}%
+\nocite{*}
+
+\phantomsection
+\printbibheading[heading=bibintoc,title={References}]
+\phantomsection
+\printbibliography[heading=subbibintoc,type=book,title={Books}]
+\phantomsection
+\printbibliography[heading=subbibintoc,type=article,title={Articles}]
+\phantomsection
+\printbibliography[heading=subbibintoc,type=incollection,title={Incollections}]
+\phantomsection
+\printbibliography[heading=subbibintoc,type=report,title={Technical reports}]
+\phantomsection
+\printbibliography[heading=subbibintoc,type=misc,title={Lectures notes}]
+\phantomsection
+\printbibliography[heading=subbibintoc,type=online,title={Online \& websites}]
+
+
+
+
+
+
+\end{document}
